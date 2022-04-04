@@ -1,0 +1,13 @@
+{
+    "path" : "~/Projetos_R/macro_aplicada_patentes/imagens",
+    "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 4
+        },
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
