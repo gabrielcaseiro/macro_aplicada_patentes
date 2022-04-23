@@ -7,9 +7,13 @@ library(googleCloudStorageR)
 # gcs_list_buckets(project_id)
 
 
-gcs_list_objects()
+files<-gcs_list_objects()
+  files<-files$name
+  files<-files[grep(".pdf",files)]
 
-resp<-dai_async_tab("1906.pdf",dest_folder = "pdf/")
+
+
+resp<-dai_async_tab(files[11],dest_folder = "text/")
 
 gcs_list_objects()
 
