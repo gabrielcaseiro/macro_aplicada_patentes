@@ -381,6 +381,7 @@ write.csv2(t,"temp/t17.csv",row.names = F)
 ##############################################################
 
 library(data.table)
+library(dplyr)
 
 files_c<-list.files("temp",".txt")
   files_c<-c(files_c,"t1_at.csv","t4.csv")
@@ -397,9 +398,11 @@ n<-length(colnames(temp))
 temp<-fread(paste0("temp/",files_c[i]),data.table = F,header = T,colClasses = rep("character",n))
 
 
-if(n==7){colnames(temp)<-c("ID","N","CONCESSIONARIOS","RESIDENCIA","OBJECTO","DECRETOS", "DURACAO" )}
+if(n==7){colnames(temp)<-c("ID","N","CONCESSIONARIOS","RESIDENCIA","OBJECTO","DATA", "DURACAO" )}
 
-if(n==5){colnames(temp)<-c("N","DATA","CONCESSIONARIOS","RESIDENCIA","OBJECTO")}
+if(n==5&i>1){colnames(temp)<-c("N","DATA","CONCESSIONARIOS","RESIDENCIA","OBJECTO")}
+
+if(n==5&i==1){colnames(temp)<-c("N","CONCESSIONARIOS","RESIDENCIA","OBJECTO","DATA")}
 
 if(n==8){colnames(temp)<-c("N","DATA","CONCESSIONARIOS","NACIONALIDADE","PROFISSAO","RESIDENCIA","OBJECTO","OBS")}
 
@@ -409,8 +412,7 @@ dt<-bind_rows(dt,temp)
 
 }
 
-if(colnames(temp)==7){colnames(temp)<-c("V1","N","CONCESSIONARIOS","RESIDENCIA","OBJECTO","DECRETOS",       
-                                        "DURAÇÃO" )}
+
 
 saveRDS(dt,'dt_1890_1906_aws.rds')
 
