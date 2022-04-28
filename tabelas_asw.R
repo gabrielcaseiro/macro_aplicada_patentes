@@ -374,7 +374,7 @@ t<-t[!t$Nacionalidade=="CONCESSIOSARIO",]
 
 colnames(t)[1]<-"N"
 
-write.csv2(t,"temp/t17.csv",row.names = F)
+write.csv2(t,"temp/t18.csv",row.names = F)
 
 
 
@@ -415,4 +415,20 @@ dt<-bind_rows(dt,temp)
 
 
 saveRDS(dt,'dt_1890_1906_aws.rds')
+
+
+
+# Adicionar 1907:
+
+dt<-read_rds("dt_1890_1906_aws.rds")
+
+temp<-fread("temp/t18_at.csv")
+
+colnames(temp)<-c("N","DATA","CONCESSIONARIOS","NACIONALIDADE","PROFISSAO","RESIDENCIA","OBJECTO","OBS")
+  temp$ANO<-1907
+
+dt<-bind_rows(dt,temp)  
+
+saveRDS(dt,'dt_1890_1907_aws.rds')
+
 
